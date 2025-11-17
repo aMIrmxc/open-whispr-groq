@@ -68,6 +68,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     whisperModel,
     preferredLanguage,
     cloudTranscriptionBaseUrl,
+    cloudTranscriptionModel,
     cloudReasoningBaseUrl,
     useReasoningModel,
     reasoningModel,
@@ -77,6 +78,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     setWhisperModel,
     setPreferredLanguage,
     setCloudTranscriptionBaseUrl,
+    setCloudTranscriptionModel,
     setCloudReasoningBaseUrl,
     setOpenaiApiKey,
     setDictationKey,
@@ -88,6 +90,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   const [apiKey, setApiKey] = useState(openaiApiKey);
   const [hotkey, setHotkey] = useState(dictationKey || "`");
   const [transcriptionBaseUrl, setTranscriptionBaseUrl] = useState(cloudTranscriptionBaseUrl);
+  const [onboardingCloudModel, setOnboardingCloudModel] = useState(cloudTranscriptionModel);
   const [reasoningBaseUrl, setReasoningBaseUrl] = useState(cloudReasoningBaseUrl);
   const [agentName, setAgentName] = useState("Agent");
   const readableHotkey = formatHotkeyLabel(hotkey);
@@ -342,6 +345,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       whisperModel,
       preferredLanguage,
       cloudTranscriptionBaseUrl: normalizedTranscriptionBase,
+      cloudTranscriptionModel: onboardingCloudModel,
     });
     updateReasoningSettings({
       useReasoningModel,
@@ -665,6 +669,8 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                     <WhisperModelPicker
                       selectedModel={whisperModel}
                       onModelSelect={setWhisperModel}
+                      cloudTranscriptionModel={onboardingCloudModel}
+                      onCloudTranscriptionModelChange={setOnboardingCloudModel}
                       variant="onboarding"
                     />
                   </div>

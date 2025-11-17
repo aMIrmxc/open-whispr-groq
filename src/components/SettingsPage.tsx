@@ -53,6 +53,7 @@ export default function SettingsPage({
     fallbackWhisperModel,
     preferredLanguage,
     cloudTranscriptionBaseUrl,
+    cloudTranscriptionModel,
     cloudReasoningBaseUrl,
     useReasoningModel,
     reasoningModel,
@@ -68,6 +69,7 @@ export default function SettingsPage({
     setFallbackWhisperModel,
     setPreferredLanguage,
     setCloudTranscriptionBaseUrl,
+    setCloudTranscriptionModel,
     setCloudReasoningBaseUrl,
     setUseReasoningModel,
     setReasoningModel,
@@ -967,6 +969,8 @@ export default function SettingsPage({
               <WhisperModelPicker
                 selectedModel={whisperModel}
                 onModelSelect={setWhisperModel}
+                cloudTranscriptionModel={cloudTranscriptionModel}
+                onCloudTranscriptionModelChange={setCloudTranscriptionModel}
                 variant="settings"
               />
             </div>
@@ -994,6 +998,7 @@ export default function SettingsPage({
                 whisperModel,
                 preferredLanguage,
                 cloudTranscriptionBaseUrl: normalizedTranscriptionBase,
+                cloudTranscriptionModel,
               });
 
               if (!useLocalWhisper && openaiApiKey.trim()) {
